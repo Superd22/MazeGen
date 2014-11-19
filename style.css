@@ -1,0 +1,4 @@
+.maze {border:3px solid black;display: inline-block;}
+.maze span {display:inline-block;width:25px;height:25px;text-align:center;font-size:8px;border:1px solid transparent;}
+.maze span.right {border-right:1px solid black;}
+.maze span.bottom {border-bottom:1px solid black;}
