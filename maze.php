@@ -50,7 +50,7 @@ ini_set('error_reporting', E_ALL);
 	    	$n = rand(1,$this->size);
 	    	$mur = array_rand($this->cases[$n]);
 
-	    		if($this->cases[$n][$mur]) {
+	    	if($this->cases[$n][$mur]) {
 				$voisin = $this->get_voisin($n,$mur);
 
 				if($voisin) {
@@ -60,8 +60,8 @@ ini_set('error_reporting', E_ALL);
 						if($ouvert_n != $ouvert_voisin) {
 							$this->drop_wall($n,$mur);
 
-							foreach($ensemble as $cel->$ouvert) {
-								if($ouvert == $ouvert_voisin) {$ensemble[$cel] = $ouvert_n;}
+							foreach($this->ensemble as $cel=>$ouvert) {
+								if($ouvert == $ouvert_voisin) {$this->ensemble[$cel] = $ouvert_n;}
 							}
 						}
 
@@ -71,10 +71,9 @@ ini_set('error_reporting', E_ALL);
 
 	    public function make_perfect() {
 	    $is_not_perfect = true;
-	    for($i=0;$i<60;$i++) {
+	   while(count(array_unique($this->ensemble)) > 1) {
 	    		$this->rand_destroy();
-	    	print_r(count(array_unique($this->ensemble))."<br />");
-	    }
+			}
 	    }
 
 

@@ -4,7 +4,7 @@ include('maze.php');
 	
 	$time_start = microtime(true);
 
-	$maze = new ZeMaze(10,10);
+	$maze = new ZeMaze(25,15);
 	$maze->make_perfect();
 
 	$time_end = microtime(true);
