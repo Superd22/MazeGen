@@ -6,8 +6,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 
 		function __construct($width,$height) {
-				print_r("Génération d'un labyrinthe ".$width."x".$height."<br />");
-
 					// Génération des variables
 				$this->ouverts = array();
 				$this->width = $width;
@@ -71,7 +69,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 					// Si notre voisin existe
 				if($voisin) {
-
 						// On récupère les ouverts
 					$ouvert_n = $this->get_ouvert($n);
 					$ouvert_voisin = $this->get_ouvert($voisin);
@@ -79,7 +76,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 						// Si nos deux ouverts n'existent pas (= premiere initialisation) ou qu'ils sont différents
 					if( ($ouvert_n === FALSE AND $ouvert_voisin === FALSE) OR !($ouvert_n === $ouvert_voisin)) {
 						$this->drop_wall($n,$mur);
-
 							// Génération des ouverts pour la première fois si nécéssaire.
 						if($ouvert_n === false) {
 							$ouvert_n = sizeof($this->ouverts)+1;
@@ -103,8 +99,10 @@ error_reporting(E_ALL & ~E_NOTICE);
 	    }
 
 	    public function make_perfect() {
+
+	    		// Tant qu'on a pas toutes les cases dans un ouvert
 	    	while(sizeof($this->ouverts[0]) < $this->size) {
-	    		echo sizeof($this->ouverts). "<br />";
+	    			// On détruit des murs
 	    		$this->rand_destroy();
 	    	}
 
@@ -112,13 +110,21 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 
 	    public function draw_maze() {
+
+	    	// Fonction d'affichage
 	    	echo "<div class='maze'>";
+
+	    		// Pour chaque cases
 	    	foreach($this->cases as $key=>$case) {
+	    		
+	    			// Doit on déssiner un mur droit/bas
 	    		$attra = '';
 	    		if($case['r']) $attra = "right";
 	    		if($case['b']) $attra .= " bottom";
 
+	    			// Affichage de la case
 	    		echo "<span id='cel_".$key."' class='".$attra."'>".$key."<br />".$case['r'].$case['b']."</span>";
+	    			// Retour à la ligne si besoin
 	    		if(is_integer($key / $this->width)) echo "<br />";
 	    	}
 	    	echo "</div>";
